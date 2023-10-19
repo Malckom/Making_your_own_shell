@@ -25,7 +25,7 @@ int get_argument_count(char **argv)
 }
 
 /**
- * count_args - Counts the number of arguments in a line
+ * count_args - Counts number of arguments in a line
  * @lineptr: The input line to process
  *
  * Return: The number of arguments
