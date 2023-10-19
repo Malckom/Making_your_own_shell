@@ -27,7 +27,7 @@ char *_strcat(char *dest, const char *src)
 }
 /**
  * _strlen - returns the length of a string
- * @s: pointer to the string
+ * @s: pointer to string
  *
  * Return: the length of the string
  */
