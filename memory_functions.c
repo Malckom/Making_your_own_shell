@@ -24,7 +24,7 @@ void free_struct(custom_args *argv, env_var *path)
 /**
  * free_argv - free struct argv
  * @argv: pointer to custom_args struct
- * Return: Nothing.
+ * Return: nothing.
  */
 
 void free_argv(custom_args *argv)
