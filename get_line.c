@@ -8,7 +8,7 @@
 /**
  * realloc_buf - reallocates memory buffer
  * @lineptr: pointer to pointer to the read line
- * @n: pointer to size of line read
+ * @n: pointer to sizeof line read
  * @pos: position of newline
  *
  * Return: returns 0 on success, -1 of error.
