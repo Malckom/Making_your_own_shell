@@ -9,7 +9,7 @@
 /**
  * get_argument_count - counts the number of arguments in the array argv
  * @argv: pointer to an array of strings
- * Return: Return argument count
+ * Return: Return argument count instantly
  */
 
 int get_argument_count(char **argv)
