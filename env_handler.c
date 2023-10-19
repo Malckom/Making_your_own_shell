@@ -5,7 +5,7 @@
 
 /**
  * print_env - prints the environment variable
- * @env: holds the environ variable
+ * @env: holds  environ variable
  *
  * Return: Nothing.
  */
