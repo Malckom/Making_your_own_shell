@@ -2,13 +2,15 @@
 #define HEADER_FILE
 #include <stdio.h>
 #include <stddef.h>
-
-/**
- * struct custom_args - structure to hold argc and argv[]
- * @lineptr_cpy: pointer to a mem copied using strdup
- * @argv: pointer to an array of arguments passed as strings
- *
- */
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <limits.h>
 
 typedef struct custom_args
 {
@@ -34,11 +36,13 @@ typedef struct env_var
  * @command: pointer to the command
  * @handler: function pointer to handle the command
  */
-
+void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
+ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
 typedef struct Command
 {
 	char *command;
 	void (*handler)(char **);
+
 } Command;
 
 extern char **environ;
@@ -46,7 +50,32 @@ extern char **environ;
 void print_env(char **env);
 env_var *get_env(char *variable);
 ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
+/*lists*/
+typedef struct sep_list_s
+{
+	char separator;
+	struct sep_list_s *next;
+} sep_list;
 
+typedef struct line_list_s
+{
+	char *line;
+	struct line_list_s *next;
+} line_list;
+
+typedef struct r_var_list
+{
+	int len_var;
+	char *val;
+	int len_val;
+	struct r_var_list *next;
+} r_var;
+sep_list *add_sep_node_end(sep_list **head, char sep);
+void free_sep_list(sep_list **head);
+line_list *add_line_node_end(line_list **head, char *line);
+void free_line_list(line_list **head);
+r_var *add_rvar_node(r_var **head, int lvar, char *val, int lval);
+void free_rvar_list(r_var **head);
 /* argv_handler.c */
 int get_argument_count(char **argv);
 custom_args *init_argv(char *lineptr);
@@ -85,5 +114,19 @@ int _unsetenv(const char *name);
 
 /*memory_functions.c */
 void free_argv(custom_args *argv);
+/*
+char *copy_info(char *name, char *value);
+void set_env(char *name, char *value, custom_args *custom);
+int _setenv(custom_args *custom);
+int _unsetenv(custom_args *custom);
+*/
+/*
+void _alias(custom_params *params);
+void set_alias(char *name, custom_params *params);
+void make_alias(char *name, char *val, custom_params *params);
+void print_alias(char *name, custom_params *params);
+void print_all_aliases(custom_params *params);
+void print_list_alias(list_t *head);
+*/
 
 #endif
